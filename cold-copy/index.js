@@ -4,8 +4,8 @@ const zapier = require("zapier-platform-core");
 const authentication = require("./authentication");
 
 // Import your actions
-const single = require("./creates/single");
-const batch = require("./creates/batch");
+const job = require("./creates/job");
+const request = require("./creates/request");
 
 const App = {
   version: require("./package.json").version,
@@ -15,11 +15,12 @@ const App = {
   authentication: authentication,
 
   // Register your app's triggers, searches, and creates
+  // TODO: Trigger based on WebHook???
   triggers: {},
   searches: {},
   creates: {
-    [single.key]: createSingleQueue,
-    [batch.key]: batch,
+    [job.key]: createJobQueue,
+    [request.key]: request,
   },
 };
 
